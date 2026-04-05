@@ -6,5 +6,10 @@ namespace Progect_GreenEconomy_4BII
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
