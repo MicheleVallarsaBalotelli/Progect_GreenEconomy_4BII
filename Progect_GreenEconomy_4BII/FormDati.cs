@@ -23,5 +23,10 @@ namespace Progect_GreenEconomy_4BII
         {
             dvg_dati.DataSource = Dati;
         }
+
+        private void btn_indietro_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
+        }
     }
 }

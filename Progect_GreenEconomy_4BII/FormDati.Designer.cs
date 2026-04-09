@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             dvg_dati = new DataGridView();
             btn_indietro = new Button();
@@ -50,8 +50,8 @@
             // 
             dvg_dati.AllowUserToAddRows = false;
             dvg_dati.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(224, 224, 224);
-            dvg_dati.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dvg_dati.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dvg_dati.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvg_dati.BackgroundColor = Color.White;
             dvg_dati.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -72,6 +72,7 @@
             btn_indietro.TabIndex = 3;
             btn_indietro.Text = "INDIETRO";
             btn_indietro.UseVisualStyleBackColor = false;
+            btn_indietro.Click += btn_indietro_Click;
             // 
             // FormDati
             // 
