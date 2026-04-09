@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net.Http;     // per connettersi a internet
+using System.Text;
 using System.Text.Json;    // per leggere i dati JSON
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Progect_GreenEconomy_4BII
 {
     public class ApiService
     {
-        private string apiKey = ""; // inserire la propria chiave API 
+        private string apiKey = "0038449e78cd5edab0ba360b9e17e781"; // inserire la propria chiave API 
         private string citta = "Vicenza";
 
         
@@ -21,7 +22,7 @@ namespace Progect_GreenEconomy_4BII
             try
             {
                 // url per scaricare i dati con la città e la chiave API
-                string url = "https://api.openweathermap.org/data/2.5/weather?q=" + citta + "&appid=" + apiKey + "&units=metric";
+                string url = $"https://api.openweathermap.org/data/2.5/weather?q={citta}&appid={apiKey}&units=metric";
 
                 // dati in formato JSON
                 string rispostaJson = await client.GetStringAsync(url);
