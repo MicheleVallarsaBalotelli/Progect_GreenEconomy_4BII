@@ -35,6 +35,10 @@
             btn_visualizzaDati = new Button();
             btn_analisiGrafico = new Button();
             lblStato = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -51,21 +55,21 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Franklin Gothic Medium", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(414, 141);
+            label2.Location = new Point(13, 9);
             label2.Name = "label2";
-            label2.Size = new Size(122, 34);
+            label2.Size = new Size(157, 34);
             label2.TabIndex = 1;
-            label2.Text = "VICENZA";
+            label2.Text = "📍VICENZA";
             label2.Click += label2_Click;
             // 
             // btn_aggiorna
             // 
-            btn_aggiorna.BackColor = Color.LightGreen;
+            btn_aggiorna.BackColor = Color.ForestGreen;
             btn_aggiorna.Font = new Font("Franklin Gothic Medium", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_aggiorna.ForeColor = SystemColors.ControlText;
-            btn_aggiorna.Location = new Point(421, 202);
+            btn_aggiorna.ForeColor = Color.White;
+            btn_aggiorna.Location = new Point(3, 3);
             btn_aggiorna.Name = "btn_aggiorna";
-            btn_aggiorna.Size = new Size(108, 49);
+            btn_aggiorna.Size = new Size(185, 49);
             btn_aggiorna.TabIndex = 2;
             btn_aggiorna.Text = " AGGIORNA DATI (API)";
             btn_aggiorna.UseVisualStyleBackColor = false;
@@ -112,11 +116,30 @@
             // 
             lblStato.AutoSize = true;
             lblStato.Font = new Font("Franklin Gothic Medium", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblStato.Location = new Point(536, 213);
+            lblStato.Location = new Point(236, 14);
             lblStato.Name = "lblStato";
             lblStato.Size = new Size(64, 24);
             lblStato.TabIndex = 6;
             lblStato.Text = "Stato:";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightGreen;
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(384, 133);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(182, 52);
+            panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ControlLight;
+            panel2.Controls.Add(btn_aggiorna);
+            panel2.Controls.Add(lblStato);
+            panel2.Location = new Point(212, 200);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(526, 57);
+            panel2.TabIndex = 8;
             // 
             // Form1
             // 
@@ -124,16 +147,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(951, 430);
-            Controls.Add(lblStato);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(btn_analisiGrafico);
             Controls.Add(btn_visualizzaDati);
             Controls.Add(label3);
-            Controls.Add(btn_aggiorna);
-            Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,5 +173,7 @@
         private Button btn_visualizzaDati;
         private Button btn_analisiGrafico;
         private Label lblStato;
+        private Panel panel1;
+        private Panel panel2;
     }
 }
