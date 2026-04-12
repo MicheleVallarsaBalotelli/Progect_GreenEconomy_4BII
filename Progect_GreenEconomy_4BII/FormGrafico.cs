@@ -49,10 +49,11 @@ namespace Progect_GreenEconomy_4BII
             serieTemp.Color = Color.Orange;
             serieTemp.XValueType = ChartValueType.DateTime;
 
-            // inquinamento (istogramma verde)
-            Series serieAria = new Series("Qualità Aria (1-5)");
-            serieAria.ChartType = SeriesChartType.Column; 
+            // PM10 (istogramma verde)
+            Series serieAria = new Series("PM10 (µg/m³)");
+            serieAria.ChartType = SeriesChartType.Column;
             serieAria.Color = Color.FromArgb(120, Color.SeaGreen);
+            serieAria.XValueType = ChartValueType.DateTime;
 
             chart1.Series.Add(serieAria);
             chart1.Series.Add(serieTemp);
@@ -63,12 +64,16 @@ namespace Progect_GreenEconomy_4BII
 
         public void PopolaDatiGrafico()
         {
+            // pulisce eventuali punti precedenti per sicurezza
+            foreach (var s in chart1.Series) s.Points.Clear();
+
             foreach (var d in dati)
             {
+                //pX è la data, Y è il valore reale PM10 o Temp
                 chart1.Series["Temperatura (°C)"].Points.AddXY(d.DataOra, d.temperatura);
-                chart1.Series["Qualità Aria (1-5)"].Points.AddXY(d.DataOra, d.qualitaAria);
+                chart1.Series["PM10 (µg/m³)"].Points.AddXY(d.DataOra, d.qualitaAria);
             }
-
+            
             AnalizzaDati();
         }
 
