@@ -81,5 +81,15 @@ namespace Progect_GreenEconomy_4BII
             FormGrafico frmGrafico = new FormGrafico(dati);
             frmGrafico.ShowDialog();
         }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            var conferma = MessageBox.Show("Vuoi davvero cancellare lo storico?", "Reset", MessageBoxButtons.YesNo);
+            if (conferma == DialogResult.Yes)
+            {
+                JsonService.ResetDatabase();
+                MessageBox.Show("Database svuotato!");
+            }
+        }
     }
 }

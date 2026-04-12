@@ -37,6 +37,7 @@
             lblStato = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            btn_reset = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -141,12 +142,26 @@
             panel2.Size = new Size(526, 57);
             panel2.TabIndex = 8;
             // 
+            // btn_reset
+            // 
+            btn_reset.BackColor = Color.Red;
+            btn_reset.Font = new Font("Franklin Gothic Medium", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_reset.ForeColor = Color.White;
+            btn_reset.Location = new Point(114, 207);
+            btn_reset.Name = "btn_reset";
+            btn_reset.Size = new Size(95, 40);
+            btn_reset.TabIndex = 7;
+            btn_reset.Text = "RESET";
+            btn_reset.UseVisualStyleBackColor = false;
+            btn_reset.Click += btn_reset_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(951, 430);
+            Controls.Add(btn_reset);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(btn_analisiGrafico);
@@ -175,5 +190,6 @@
         private Label lblStato;
         private Panel panel1;
         private Panel panel2;
+        private Button btn_reset;
     }
 }

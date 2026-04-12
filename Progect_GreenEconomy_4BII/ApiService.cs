@@ -13,7 +13,7 @@ namespace Progect_GreenEconomy_4BII
         private string apiKey = "0038449e78cd5edab0ba360b9e17e781"; // inserire la propria chiave API 
         private string citta = "Vicenza";
 
-        
+
         public async Task<EnviromentData> GetDatiAsync() // metodo async per scaricare i dati da internet
         {
             // oggetto che fa la chiamata HTTP
@@ -21,35 +21,33 @@ namespace Progect_GreenEconomy_4BII
 
             try
             {
-                // url per scaricare i dati con la città e la chiave API
-                string url = $"https://api.openweathermap.org/data/2.5/weather?q={citta}&appid={apiKey}&units=metric";
+                // CHIAMATA METEO (per temperatura)
+                string urlMeteo = $"https://api.openweathermap.org/data/2.5/weather?q={citta}&appid={apiKey}&units=metric";
+                string rispostaMeteo = await client.GetStringAsync(urlMeteo);
+                JsonDocument docMeteo = JsonDocument.Parse(rispostaMeteo);
 
-                // dati in formato JSON
-                string rispostaJson = await client.GetStringAsync(url);
+                double temp = docMeteo.RootElement.GetProperty("main").GetProperty("temp").GetDouble();
 
-                
-                JsonDocument documento = JsonDocument.Parse(rispostaJson);
-                JsonElement radice = documento.RootElement;
+                // recupero coordinate per la seconda chiamata
+                double lat = docMeteo.RootElement.GetProperty("coord").GetProperty("lat").GetDouble();
+                double lon = docMeteo.RootElement.GetProperty("coord").GetProperty("lon").GetDouble();
 
+                // CHIAMATA INQUINAMENTO (per PM10)
+                string urlAria = $"https://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={apiKey}";
+                string rispostaAria = await client.GetStringAsync(urlAria);
+                JsonDocument docAria = JsonDocument.Parse(rispostaAria);
 
-                JsonElement sezioneMain = radice.GetProperty("main");
-                double temperaturaTrovata = sezioneMain.GetProperty("temp").GetDouble();
+                // json per PM10
+                double pm10 = docAria.RootElement.GetProperty("list")[0]
+                                     .GetProperty("components")
+                                     .GetProperty("pm10").GetDouble();
 
-
-                Random generatoreRandom = new Random();
-                int inquinamentoSimulato = generatoreRandom.Next(1, 6);
-
-
-                EnviromentData risultato = new EnviromentData();
-                risultato.DataOra = DateTime.Now;
-                risultato.temperatura = temperaturaTrovata;
-                risultato.qualitaAria = inquinamentoSimulato;
-
-                return risultato;
+                // oggetto con dati 
+                return new EnviromentData(temp, pm10);
             }
             catch (Exception errore)
             {
-                throw new Exception("Errore durante il download: " + errore.Message);
+                throw new Exception("Errore: " + errore.Message);
             }
             finally
             {
@@ -58,3 +56,4 @@ namespace Progect_GreenEconomy_4BII
         }
     }
 }
+

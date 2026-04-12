@@ -30,5 +30,13 @@ namespace Progect_GreenEconomy_4BII
 
             return listaCaricata;
         }
+
+        public static void ResetDatabase()
+        {
+            if (File.Exists(nomeFile))
+            {
+                File.Delete(nomeFile);
+            }
+        }
     }
 }
